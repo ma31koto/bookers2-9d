@@ -22,6 +22,11 @@ class Book < ApplicationRecord
     end
   end
 
+  def self.search(search_category)
+    return Book.all unless search_category
+    Book.where(['category LIKE ?', "%#{search_category}%"])
+  end
+
 
 
 end

@@ -9,6 +9,7 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.order(params[:sort])
+    @books = Book.search(params[:search_category])
     @book = Book.new
   end
 
@@ -42,7 +43,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :rate)
+    params.require(:book).permit(:title, :body, :rate, :category)
   end
 
   def ensure_correct_user
